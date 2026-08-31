@@ -11,7 +11,7 @@ const JOB_LABEL={residential:'Residential',commercial:'Commercial'};
 const FINISH_LABEL={brushed:'Brushed finish',mirror:'Mirror finish',black:'Matt black'};
 const POST_SIZE_LABEL={round50:'50mm round',square38:'38×38mm square'};
 const RAIL_SIZE_LABEL={round38:'38mm round',round50:'50mm round',rect5025:'50×25mm rectangular'};
-const RAIL_IMG={'round38|brushed':'images/handrail-round38-brushed.jpg','round38|mirror':'images/handrail-round38-mirror.jpg','round50|brushed':'images/handrail-round50-brushed.jpg','round50|mirror':'images/handrail-round50-mirror.jpg','round38|black':'images/handrail-round-black.jpg','round50|black':'images/handrail-round-black.jpg','rect5025|brushed':'images/handrail-rect5025-brushed.jpg','rect5025|mirror':'images/handrail-rect5025-mirror.jpg'};
+const RAIL_IMG={'round38|brushed':'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a91323f5ddb889386bf2b6f_handrail-round38-brushed.jpg','round38|mirror':'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a91323f005b729348e67a20_handrail-round38-mirror.jpg','round50|brushed':'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a9132405785c05d31e99a4f_handrail-round50-brushed.jpg','round50|mirror':'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a913240ee5e3aabbb0fba27_handrail-round50-mirror.jpg','round38|black':'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a9132411a7c66214731579e_handrail-round-black.jpg','round50|black':'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a9132411a7c66214731579e_handrail-round-black.jpg','rect5025|brushed':'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a91323f7ce91e3265df96d0_handrail-rect5025-brushed.jpg','rect5025|mirror':'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a91323f61721d2770bfc780_handrail-rect5025-mirror.jpg'};
 const SHAPES={
   straight:{label:'Straight run',count:1,desc:'One flat, uninterrupted length',icon:'<path d="M10 60h80"/><circle cx="10" cy="60" r="4" fill="#1f2a2c"/><circle cx="90" cy="60" r="4" fill="#1f2a2c"/>'},
   l:{label:'L-shape · 1 corner',count:2,desc:'Two lengths meeting at a 90° turn',icon:'<path d="M12 60h48v-30"/><circle cx="12" cy="60" r="4" fill="#1f2a2c"/><circle cx="60" cy="60" r="4" fill="#e0a23a"/><circle cx="60" cy="30" r="4" fill="#1f2a2c"/>'},
@@ -95,18 +95,18 @@ function buildKitRows(p){
   const fl=FINISH_LABEL[ws.finish]||(ws.finish==='custom'?(ws.pcColour?'Powder-coat '+ws.pcColour:'Powder-coat colour'):''),ps=POST_SIZE_LABEL[ws.postSize]||'';
   const rows=[];
   const incl='incl. base plate + cover';
-  if(p.endPosts>0)rows.push({key:'end',name:`End post — pre-drilled, ${incl} (${ps}, ${fl})`,qty:p.endPosts-p.twoEndCorners*2,unit:PRICE.end,thumb:'images/part-endpost.jpg'});
-  if(p.cornerPosts>0)rows.push({key:'corner',name:`Corner post — pre-drilled, ${incl} (${ps}, ${fl})`,qty:p.cornerPosts,unit:PRICE.corner,thumb:'images/part-cornerpost.jpg'});
-  if(p.intermediate>0)rows.push({key:'mid',name:`Intermediate post — pre-drilled, ${incl} (${ps}, ${fl})`,qty:p.intermediate,unit:PRICE.mid,thumb:'images/part-intermediate-w.jpg'});
-  if(p.stairEndPosts>0)rows.push({key:'stairend',name:`Stair end post — raked, pre-drilled, ${incl} (${ps}, ${fl})`,qty:p.stairEndPosts,unit:PRICE.stairEnd,thumb:'images/part-endpost.jpg'});
-  if(p.stairMidPosts>0)rows.push({key:'stairmid',name:`Stair intermediate post — raked, pre-drilled, ${incl} (${ps}, ${fl})`,qty:p.stairMidPosts,unit:PRICE.stairMid,thumb:'images/part-intermediate-w.jpg'});
-  if(p.breakPosts>0)rows.push({key:'breakpost',name:`Mid-run post — pre-drilled both faces, ${incl} (${ps}, ${fl})`,qty:p.breakPosts,unit:PRICE.breakpost,thumb:'images/part-endpost.jpg',note:'One of your sections is longer than 10m — a single wire run can\'t span that far, so we split it with an extra post drilled on both faces, doubling the eyebolts, turnbuckles and forks at that point'});
-  if(p.twoEndCorners>0)rows.push({key:'twoend',name:`End post — pre-drilled, used as corner pair (${ps}, ${fl})`,qty:p.twoEndCorners*2,unit:PRICE.twoend,thumb:'images/part-endpost.jpg',note:'You chose two separate end posts instead of a corner post for an off-square corner'});
-  rows.push({key:'wire',name:`316 wire 3.2mm — ${WIRE_COUNT} runs (per m)`,qty:p.wireMetres,unit:PRICE.wire,thumb:'images/part-wire.png'});
-  rows.push({key:'turnbuckle',name:'Adjustable swage (turnbuckle)',qty:p.turnbuckles,unit:PRICE.turnbuckle,thumb:'images/part-turnbuckle-w.jpg'});
-  rows.push({key:'fork',name:'Fork terminal',qty:p.forkTerminals,unit:PRICE.fork,thumb:'images/part-fork-w.jpg'});
-  rows.push({key:'eyebolt',name:'Eyebolt',qty:p.eyebolts,unit:PRICE.eyebolt,thumb:'images/part-eyebolt.jpg'});
-  rows.push({key:'postfixing',name:`Post fixings (${FIXINGS_PER_POST} per post)`,qty:p.postFixings,unit:PRICE.postfixing,thumb:'images/part-fixing-screw.jpg'});
+  if(p.endPosts>0)rows.push({key:'end',name:`End post — pre-drilled, ${incl} (${ps}, ${fl})`,qty:p.endPosts-p.twoEndCorners*2,unit:PRICE.end,thumb:'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a94da31b2eaa2be6b12ab11_part-endpost.png'});
+  if(p.cornerPosts>0)rows.push({key:'corner',name:`Corner post — pre-drilled, ${incl} (${ps}, ${fl})`,qty:p.cornerPosts,unit:PRICE.corner,thumb:'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a94da9d330bcb583cc83bfb_part-cornerpost.png'});
+  if(p.intermediate>0)rows.push({key:'mid',name:`Intermediate post — pre-drilled, ${incl} (${ps}, ${fl})`,qty:p.intermediate,unit:PRICE.mid,thumb:'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a91323c8693431702d46400_part-intermediate-w.jpg'});
+  if(p.stairEndPosts>0)rows.push({key:'stairend',name:`Stair end post — raked, pre-drilled, ${incl} (${ps}, ${fl})`,qty:p.stairEndPosts,unit:PRICE.stairEnd,thumb:'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a94da31b2eaa2be6b12ab11_part-endpost.png'});
+  if(p.stairMidPosts>0)rows.push({key:'stairmid',name:`Stair intermediate post — raked, pre-drilled, ${incl} (${ps}, ${fl})`,qty:p.stairMidPosts,unit:PRICE.stairMid,thumb:'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a91323c8693431702d46400_part-intermediate-w.jpg'});
+  if(p.breakPosts>0)rows.push({key:'breakpost',name:`Mid-run post — pre-drilled both faces, ${incl} (${ps}, ${fl})`,qty:p.breakPosts,unit:PRICE.breakpost,thumb:'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a94da31b2eaa2be6b12ab11_part-endpost.png',note:'One of your sections is longer than 10m — a single wire run can\'t span that far, so we split it with an extra post drilled on both faces, doubling the eyebolts, turnbuckles and forks at that point'});
+  if(p.twoEndCorners>0)rows.push({key:'twoend',name:`End post — pre-drilled, used as corner pair (${ps}, ${fl})`,qty:p.twoEndCorners*2,unit:PRICE.twoend,thumb:'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a94da31b2eaa2be6b12ab11_part-endpost.png',note:'You chose two separate end posts instead of a corner post for an off-square corner'});
+  rows.push({key:'wire',name:`316 wire 3.2mm — ${WIRE_COUNT} runs (per m)`,qty:p.wireMetres,unit:PRICE.wire,thumb:'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a91323cf2b270cc9f46477e_part-wire.png'});
+  rows.push({key:'turnbuckle',name:'Adjustable swage (turnbuckle)',qty:p.turnbuckles,unit:PRICE.turnbuckle,thumb:'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a913243d921d3e985cf4eef_part-handrail-w.jpg'});
+  rows.push({key:'fork',name:'Fork terminal',qty:p.forkTerminals,unit:PRICE.fork,thumb:'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a91323be4c5d27ac7a33017_part-turnbuckle-w.jpg'});
+  rows.push({key:'eyebolt',name:'Eyebolt',qty:p.eyebolts,unit:PRICE.eyebolt,thumb:'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a9132416fd11bdfdae6e500_part-eyebolt.jpg'});
+  rows.push({key:'postfixing',name:`Post fixings (${FIXINGS_PER_POST} per post)`,qty:p.postFixings,unit:PRICE.postfixing,thumb:'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a94dfa27b904b23efd045b0_part-fixing-screw.png'});
   if(ws.finish==='black')rows.push({key:'pc',name:'Powder coat — matt black (per post)',qty:p.totalPosts,unit:PRICE.pcBlack});
   if(ws.finish==='custom'){
     rows.push({key:'pc',name:`Powder coat — ${ws.pcColour||'custom colour'} (per post)`,qty:p.totalPosts,unit:PRICE.pcCustom});
@@ -117,15 +117,15 @@ function buildKitRows(p){
   if(ws.handrail){
     const rl=RAIL_SIZE_LABEL[ws.railSize]||'';
     const pc=ws.finish==='black'||ws.finish==='custom';
-    rows.push({key:'rail',name:`Top handrail — ${rl}, ${fl} (per m)`,qty:Math.round(p.railMetres*100)/100,unit:pc?PRICE.railPerMPc:PRICE.railPerM,thumb:'images/part-handrail-w.jpg'});
-    if(p.railSleeves>0)rows.push({key:'sleeve',name:'Handrail sleeve / joiner',qty:p.railSleeves,unit:PRICE.sleeve,thumb:'images/part-sleeve.jpg',note:'Needed because one of your section lengths is longer than a 6m stock length — joins two lengths together'});
-    if(p.railElbows90>0)rows.push({key:'elbow90',name:'Handrail elbow — 90° (per corner)',qty:p.railElbows90,unit:PRICE.elbow90,thumb:'images/part-elbow90.jpg'});
-    if(p.railElbowsAdj>0)rows.push({key:'elbowadj',name:'Handrail elbow — adjustable angle (per corner)',qty:p.railElbowsAdj,unit:PRICE.elbowAdj,thumb:'images/part-elbowadj.jpg'});
-    if(p.railCaps>0)rows.push({key:'railcap',name:'Handrail end cap',qty:p.railCaps,unit:PRICE.railCap,thumb:'images/part-endcap.jpg'});
-    if(p.railFlanges>0)rows.push({key:'railflange',name:'Handrail wall flange',qty:p.railFlanges,unit:PRICE.railFlange,thumb:ws.railSize==='rect5025'?'images/part-flange-rect.jpg':'images/part-flange-round.jpg'});
+    rows.push({key:'rail',name:`Top handrail — ${rl}, ${fl} (per m)`,qty:Math.round(p.railMetres*100)/100,unit:pc?PRICE.railPerMPc:PRICE.railPerM,thumb:'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a913243d921d3e985cf4eef_part-handrail-w.jpg'});
+    if(p.railSleeves>0)rows.push({key:'sleeve',name:'Handrail sleeve / joiner',qty:p.railSleeves,unit:PRICE.sleeve,thumb:'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a91323d1a7c66214731567e_part-sleeve.jpg',note:'Needed because one of your section lengths is longer than a 6m stock length — joins two lengths together'});
+    if(p.railElbows90>0)rows.push({key:'elbow90',name:'Handrail elbow — 90° (per corner)',qty:p.railElbows90,unit:PRICE.elbow90,thumb:'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a9132414dc16f1c29e3f20f_part-elbow90.jpg'});
+    if(p.railElbowsAdj>0)rows.push({key:'elbowadj',name:'Handrail elbow — adjustable angle (per corner)',qty:p.railElbowsAdj,unit:PRICE.elbowAdj,thumb:'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a9132417bfc3d8914783e9b_part-elbowadj.jpg'});
+    if(p.railCaps>0)rows.push({key:'railcap',name:'Handrail end cap',qty:p.railCaps,unit:PRICE.railCap,thumb:'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a913241f2b270cc9f464994_part-endcap.jpg'});
+    if(p.railFlanges>0)rows.push({key:'railflange',name:'Handrail wall flange',qty:p.railFlanges,unit:PRICE.railFlange,thumb:ws.railSize==='rect5025'?'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a9132429bc7ef9bf8720f75_part-flange-rect.jpg':'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a9132426329eaa7663a6a6b_part-flange-round.jpg'});
     const straightSaddles=p.endPosts+p.intermediate+p.breakPosts+p.stairEndPosts+p.stairMidPosts;
-    if(straightSaddles>0)rows.push({key:'saddle',name:'Handrail saddle — straight (per post)',qty:straightSaddles,unit:PRICE.saddle,thumb:'images/part-saddle-straight.jpg'});
-    if(p.cornerPosts>0)rows.push({key:'saddlecorner',name:'Handrail saddle — 90° corner (per post)',qty:p.cornerPosts,unit:PRICE.saddleCorner,thumb:'images/part-saddle-corner.jpg'});
+    if(straightSaddles>0)rows.push({key:'saddle',name:'Handrail saddle — straight (per post)',qty:straightSaddles,unit:PRICE.saddle,thumb:'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a91323ded63c0b65be42a38_part-saddle-straight.jpg'});
+    if(p.cornerPosts>0)rows.push({key:'saddlecorner',name:'Handrail saddle — 90° corner (per post)',qty:p.cornerPosts,unit:PRICE.saddleCorner,thumb:'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a91323dde5562391f80bc4f_part-saddle-corner.jpg'});
   }
   return rows.filter(r=>r.qty>0);
 }
@@ -317,14 +317,14 @@ function openGuide(){
 }
 function stageIntro(){
   $('#wiz-progress').textContent='Step 1 · What we\'ll build together';
-  $('#wiz-main').innerHTML=`<div class="wiz-q"><img src="images/wire-hero-complete-w.jpg" alt="Completed wire balustrade installation" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:var(--r-md);margin-bottom:16px"/><h3>Let's build your wire balustrade</h3><p class="wiz-q__sub">Every kit is made of the same handful of parts. Here's what connects where:</p>
+  $('#wiz-main').innerHTML=`<div class="wiz-q"><img src="https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a91323d38b5cbb4f4fedd59_wire-hero-complete-w.jpg" alt="Completed wire balustrade installation" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:var(--r-md);margin-bottom:16px"/><h3>Let's build your wire balustrade</h3><p class="wiz-q__sub">Every kit is made of the same handful of parts. Here's what connects where:</p>
   <div class="anatomy-grid">
-    <div class="anatomy-item"><div class="ic ic--photo"><img src="images/part-endpost.jpg" alt="End post"/></div><b>End post</b></div>
-    <div class="anatomy-item"><div class="ic ic--photo"><img src="images/part-cornerpost.jpg" alt="Corner post"/></div><b>Corner post</b></div>
-    <div class="anatomy-item"><div class="ic ic--photo"><img src="images/part-intermediate-w.jpg" alt="Intermediate post"/></div><b>Intermediate post</b></div>
-    <div class="anatomy-item"><div class="ic ic--photo"><img src="images/part-wire.png" alt="316 wire"/></div><b>Wire runs</b></div>
-    <div class="anatomy-item"><div class="ic ic--photo"><img src="images/part-turnbuckle-w.jpg" alt="Turnbuckle and fork terminal"/></div><b>Turnbuckle</b></div>
-    <div class="anatomy-item"><div class="ic ic--photo"><img src="images/part-baseplate-square-w.jpg" alt="Base plate and cover"/></div><b>Base plate & cover</b></div>
+    <div class="anatomy-item"><div class="ic ic--photo"><img src="https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a94da31b2eaa2be6b12ab11_part-endpost.png" alt="End post"/></div><b>End post</b></div>
+    <div class="anatomy-item"><div class="ic ic--photo"><img src="https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a94da9d330bcb583cc83bfb_part-cornerpost.png" alt="Corner post"/></div><b>Corner post</b></div>
+    <div class="anatomy-item"><div class="ic ic--photo"><img src="https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a91323c8693431702d46400_part-intermediate-w.jpg" alt="Intermediate post"/></div><b>Intermediate post</b></div>
+    <div class="anatomy-item"><div class="ic ic--photo"><img src="https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a91323cf2b270cc9f46477e_part-wire.png" alt="316 wire"/></div><b>Wire runs</b></div>
+    <div class="anatomy-item"><div class="ic ic--photo"><img src="https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a91323be4c5d27ac7a33017_part-turnbuckle-w.jpg" alt="Turnbuckle and fork terminal"/></div><b>Turnbuckle</b></div>
+    <div class="anatomy-item"><div class="ic ic--photo"><img src="https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a9132415ddb889386bf2cb9_part-baseplate-square-w.jpg" alt="Base plate and cover"/></div><b>Base plate & cover</b></div>
   </div></div>`;
   setNav({back:false,next:'Start',onNext:()=>{pushHistory();ws.stage='shape';render();}});
 }
@@ -604,10 +604,10 @@ function stageFinish(){
     <div class="wiz-card${ws.postSize==='square38'?' is-sel':''}" data-postsize="square38"><b>38×38mm square</b><span>Square posts</span></div>
   </div>
   <div class="paint-preview" id="post-preview-wrap" style="display:none;margin-top:16px">
-    <image-slot id="post-preview-brushed" shape="rounded" radius="10" placeholder="Brushed finish example" src="images/post-square38-brushed.jpg" fit="cover" style="display:none"></image-slot>
-    <image-slot id="post-preview-mirror" shape="rounded" radius="10" placeholder="Mirror finish example" src="images/post-square38-mirror.jpg" fit="cover" style="display:none"></image-slot>
-    <image-slot id="post-preview-brushed-round" shape="rounded" radius="10" placeholder="Brushed finish example" src="images/post-round50-brushed.jpg" fit="cover" style="display:none"></image-slot>
-    <image-slot id="post-preview-mirror-round" shape="rounded" radius="10" placeholder="Mirror finish example" src="images/post-round50-mirror.jpg" fit="cover" style="display:none"></image-slot>
+    <image-slot id="post-preview-brushed" shape="rounded" radius="10" placeholder="Brushed finish example" src="https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a94de74fdddc19fa65d25d8_post-square38-brushed.png" fit="cover" style="display:none"></image-slot>
+    <image-slot id="post-preview-mirror" shape="rounded" radius="10" placeholder="Mirror finish example" src="https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a94de742845e7c9a9342921_post-square38-mirror.png" fit="cover" style="display:none"></image-slot>
+    <image-slot id="post-preview-brushed-round" shape="rounded" radius="10" placeholder="Brushed finish example" src="https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a94de74fdddc19fa65d260e_post-round50-brushed.png" fit="cover" style="display:none"></image-slot>
+    <image-slot id="post-preview-mirror-round" shape="rounded" radius="10" placeholder="Mirror finish example" src="https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a91323ded63c0b65be429fd_post-round50-mirror.jpg" fit="cover" style="display:none"></image-slot>
   </div>
   <p class="paint-preview__cap" id="post-preview-cap" style="display:none"></p>
   <h4 style="margin-top:20px">Finish<span class="req">required</span></h4>
@@ -674,7 +674,7 @@ function updateRailPreview(){
     cap.textContent='Example: '+(FINISH_LABEL[ws.finish]||ws.finish)+', '+RAIL_SIZE_LABEL[ws.railSize]+' handrail';
   }
 }
-const EXTRA_IMG={screw:'images/part-fixing-screw.jpg',plug:'images/part-wallplug-w.jpg'};
+const EXTRA_IMG={screw:'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a94dfa27b904b23efd045b0_part-fixing-screw.png',plug:'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a91323ae1230df819737b58_part-wallplug-w.jpg'};
 function extraCard(key,label,sub,unit,recommended){
   const qty=extrasQty[key]==null?recommended:extrasQty[key];
   const img=EXTRA_IMG[key];
@@ -691,9 +691,9 @@ function extraCard(key,label,sub,unit,recommended){
   </div>`;
 }
 const TOOLS=[
-  {key:'toolhire',label:'Crimping tool hire — wire cutter included',sub:'Hire both tools for your install and send them back when you’re done. Cheapest way to do a one-off job.',unit:PRICE.toolHire,img:'images/tool-crimping-tool.jpg',tag:'Most DIY customers pick this'},
-  {key:'cutter',label:'Stainless wire cutter',sub:'Clean, square cuts on 3.2mm and 4mm stainless wire. Yours to keep.',unit:PRICE.wireCutter,img:'images/tool-wire-cutter.jpg'},
-  {key:'crimper',label:'Crimping tool',sub:'Hydraulic crimper for swaging the fittings onto your wire. Yours to keep.',unit:PRICE.crimper,img:'images/tool-crimping-tool.jpg'}
+  {key:'toolhire',label:'Crimping tool hire — wire cutter included',sub:'Hire both tools for your install and send them back when you’re done. Cheapest way to do a one-off job.',unit:PRICE.toolHire,img:'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a91323be676bcd728284a79_tool-crimping-tool.jpg',tag:'Most DIY customers pick this'},
+  {key:'cutter',label:'Stainless wire cutter',sub:'Clean, square cuts on 3.2mm and 4mm stainless wire. Yours to keep.',unit:PRICE.wireCutter,img:'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a91323d5785c05d31e9997e_tool-wire-cutter.jpg'},
+  {key:'crimper',label:'Crimping tool',sub:'Hydraulic crimper for swaging the fittings onto your wire. Yours to keep.',unit:PRICE.crimper,img:'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a91323be676bcd728284a79_tool-crimping-tool.jpg'}
 ];
 function toolCard(t){
   const added=!!addedExtras[t.key];
