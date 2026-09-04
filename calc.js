@@ -1039,7 +1039,7 @@
     return l;
   }
   /* One photo per thickness, so 42mm and 65mm show the boards they actually are. */
-  var SPECIES_IMG = { amerOak42: 'assets/amer-oak-42.png', amerOak65: 'assets/img11.jpg',
+  var SPECIES_IMG = { amerOak42: 'assets/amer-oak-42.png', amerOak65: 'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a9a67dac163d5584771097a_img11.jpg',
     tassieVic42: 'assets/img04.jpg', merbau42_m: 'assets/merbau-42-tread.png', merbau66_m: 'assets/merbau-42-tread.png' };
   function fillSpeciesCards() {
     var wrap = $('#c-species-cards');
