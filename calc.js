@@ -1040,7 +1040,7 @@
   }
   /* One photo per thickness, so 42mm and 65mm show the boards they actually are. */
   var SPECIES_IMG = { amerOak42: 'assets/amer-oak-42.png', amerOak65: 'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a9a67dac163d5584771097a_img11.jpg',
-    tassieVic42: 'assets/img04.jpg', merbau42_m: 'assets/merbau-42-tread.png', merbau66_m: 'assets/merbau-42-tread.png' };
+    tassieVic42: 'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a9a67ed96bb2c7ac030a87e_img04.jpg', merbau42_m: 'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a9a680f833d25a03551d811_merbau-42-tread.png', merbau66_m: 'assets/merbau-42-tread.png' };
   function fillSpeciesCards() {
     var wrap = $('#c-species-cards');
     if (!wrap || wrap.dataset.filled) return;
@@ -1131,8 +1131,8 @@
     var straight = ans.shape && state.shape === 'straight';
     var img = $('#height-photo');
     if (!img) return;
-    var want = straight ? 'assets/height-measure-straight.jpg'
-      : (state.shape === 'u' ? 'assets/height-measure-u.jpg' : 'assets/height-measure.jpg');
+    var want = straight ? 'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a9a69ebcc2393f510b3801a_height-measure.jpg'
+      : (state.shape === 'u' ? 'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a9e301e06537b1ec267ea6a_height-measure-u.jpg' : 'https://cdn.prod.website-files.com/67becbfecbf559dfc99e4932/6a9a69ebcc2393f510b3801a_height-measure.jpg');
     if (img.getAttribute('src') !== want) img.setAttribute('src', want);
   }
 
