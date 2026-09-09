@@ -31,32 +31,3 @@
   document.getElementById('close-measure').addEventListener('click', function () { dlg.close(); });
   dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
 })();
-
-<!-- Floating shortcut to the calculator. Drop this block (button + style + script)
-     into any other page on the site and point the href at this page's #calculator. -->
-<a class="fabcalc" id="fabcalc" href="#calculator">Price your staircase</a>
-
-(function () {
-  var fab = document.getElementById('fabcalc');
-  if (!fab) return;
-  /* Shown from the moment the customer scrolls off the hero, and kept there \u2014 the only
-     place it steps out of the way is over the send form, where the page has its own
-     button. */
-  var form = document.getElementById('sendwrap'), calc = document.getElementById('calculator');
-  var band = document.querySelector('section.band');
-  function covers(el, frac) {
-    if (!el) return false;
-    var r = el.getBoundingClientRect(), h = window.innerHeight;
-    var vis = Math.min(r.bottom, h) - Math.max(r.top, 0);
-    return vis > h * frac;
-  }
-  function upd() {
-    /* Only out of the way when the customer is actually working in the calculator or
-       filling in the form — everywhere else on the page it stays put. */
-    var on = window.scrollY > 320 && !covers(calc, 0.3) && !covers(form, 0.15) && !covers(band, 0.1);
-    fab.classList.toggle('is-on', on);
-  }
-  upd();
-  window.addEventListener('scroll', upd, { passive: true });
-  window.addEventListener('resize', upd);
-})();
