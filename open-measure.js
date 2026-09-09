@@ -31,11 +31,11 @@
   document.getElementById('close-measure').addEventListener('click', function () { dlg.close(); });
   dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
 })();
-</script>
+
 <!-- Floating shortcut to the calculator. Drop this block (button + style + script)
      into any other page on the site and point the href at this page's #calculator. -->
 <a class="fabcalc" id="fabcalc" href="#calculator">Price your staircase</a>
-<script>
+
 (function () {
   var fab = document.getElementById('fabcalc');
   if (!fab) return;
